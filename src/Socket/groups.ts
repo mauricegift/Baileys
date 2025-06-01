@@ -337,8 +337,23 @@ export const extractGroupMetadata = (result: BinaryNode) => {
 		joinApprovalMode: !!getBinaryNodeChild(group, 'membership_approval_mode'),
 		memberAddMode,
 		participants: getBinaryNodeChildren(group, 'participant').map(({ attrs }) => {
+
+let pn: string | undefined
+				let lid: string | undefined
+				if(isJidUser(attrs.jid)) {
+					pn = attrs.jid
+					lid = attrs.lid
+				} else if(isLidUser(attrs.jid)) {
+					lid = attrs.jid
+					pn = attrs.phone_number
+				}
+
+
 			return {
 				id: attrs.jid,
+       pn: pn,
+					lid: lid,
+
 				admin: (attrs.type || null) as GroupParticipant['admin']
 			}
 		}),
