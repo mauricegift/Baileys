@@ -13,6 +13,8 @@ import {
 	getBinaryNodeChild,
 	getBinaryNodeChildren,
 	getBinaryNodeChildString,
+isJidUser,
+	isLidUser,
 	jidEncode,
 	jidNormalizedUser
 } from '../WABinary'
