@@ -13,10 +13,7 @@ import {
 	getBinaryNodeChild,
 	getBinaryNodeChildren,
 	getBinaryNodeChildString,
-
-isJidUser,
 	isJidUser,
-
 	isLidUser,
 	jidEncode,
 	jidNormalizedUser
