@@ -361,21 +361,11 @@ let pn: string | undefined
 
 
 			return {
-				id: attrs.jid,
- 
-       pn: pn,
-					lid: lid,
-
-
-				jid: isJidUser(attrs.jid) ? attrs.jid : jidNormalizedUser(attrs.phone_number),
-				lid: isLidUser(attrs.jid) ? attrs.jid : attrs.lid,
- 
-				admin: (attrs.type || null) as GroupParticipant['admin']
-			}
-		}),
-		ephemeralDuration: eph ? +eph : undefined
-	}
-	return metadata
+  id: attrs.jid,
+  pn,
+  lid,
+  jid: isJidUser(attrs.jid) ? attrs.jid : jidNormalizedUser(attrs.phone_number),
+  admin: (attrs.type || null) as GroupParticipant['admin']
 }
 
 export type GroupsSocket = ReturnType<typeof makeGroupsSocket>
