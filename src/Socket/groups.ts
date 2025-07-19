@@ -348,24 +348,27 @@ export const extractGroupMetadata = (result: BinaryNode) => {
 		joinApprovalMode: !!getBinaryNodeChild(group, 'membership_approval_mode'),
 		memberAddMode,
 		participants: getBinaryNodeChildren(group, 'participant').map(({ attrs }) => {
-
-let pn: string | undefined
-				let lid: string | undefined
-				if(isJidUser(attrs.jid)) {
-					pn = attrs.jid
-					lid = attrs.lid
-				} else if(isLidUser(attrs.jid)) {
-					lid = attrs.jid
-					pn = attrs.phone_number
-				}
-
+			let pn: string | undefined
+			let lid: string | undefined
+			if(isJidUser(attrs.jid)) {
+				pn = attrs.jid
+				lid = attrs.lid
+			} else if(isLidUser(attrs.jid)) {
+				lid = attrs.jid
+				pn = attrs.phone_number
+			}
 
 			return {
-  id: attrs.jid,
-  pn,
-  lid,
-  jid: isJidUser(attrs.jid) ? attrs.jid : jidNormalizedUser(attrs.phone_number),
-  admin: (attrs.type || null) as GroupParticipant['admin']
+				id: attrs.jid,
+				pn,
+				lid,
+				jid: isJidUser(attrs.jid) ? attrs.jid : jidNormalizedUser(attrs.phone_number),
+				admin: (attrs.type || null) as GroupParticipant['admin']
+			}
+		}) // Added missing closing parenthesis and brace for the map function
+	}
+
+	return metadata
 }
 
 export type GroupsSocket = ReturnType<typeof makeGroupsSocket>
