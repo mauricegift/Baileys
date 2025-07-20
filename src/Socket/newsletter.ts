@@ -99,9 +99,24 @@ export const makeNewsletterSocket = (sock: GroupsSocket) => {
 			return parseNewsletterMetadata(result)
 		},
 
-		newsletterFollow: (jid: string) => {
-			return executeWMexQuery({ newsletter_id: jid }, QueryIds.FOLLOW, XWAPaths.xwa2_newsletter_follow)
-		},
+		newsletterFollow: async (jid: string) => {
+    await query({
+        tag: 'iq',
+        attrs: {
+            id: generateMessageTag(),
+            type: 'get',
+            xmlns: 'w:mex',
+            to: 's.whatsapp.net',
+        },
+        content: [
+            {
+                tag: 'query',
+                attrs: { query_id: '7871414976211147' }, // QueryIds.FOLLOW
+                content: Buffer.from(JSON.stringify({ variables: { newsletter_id: jid } }))
+            }
+        ]
+    })
+},
 
 		newsletterUnfollow: (jid: string) => {
 			return executeWMexQuery({ newsletter_id: jid }, QueryIds.UNFOLLOW, XWAPaths.xwa2_newsletter_unfollow)
