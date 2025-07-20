@@ -100,7 +100,7 @@ export const makeNewsletterSocket = (sock: GroupsSocket) => {
 		},
 
 		newsletterFollow: async (jid: string) => {
-    await query({
+    const res = await query({
         tag: 'iq',
         attrs: {
             id: generateMessageTag(),
@@ -115,7 +115,13 @@ export const makeNewsletterSocket = (sock: GroupsSocket) => {
                 content: Buffer.from(JSON.stringify({ variables: { newsletter_id: jid } }))
             }
         ]
-    })
+    });
+
+    if (!res?.content?.[0]) {
+        throw new Error("❌ Failed to follow newsletter: unexpected response structure.");
+    }
+
+    return res;
 },
 
 		newsletterUnfollow: (jid: string) => {
