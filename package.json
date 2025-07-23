@@ -1,17 +1,25 @@
 {
-  "name": "baileys",
-  "version": "6.7.18",
-  "description": "A WebSockets library for interacting with WhatsApp Web",
+  "name": "gifted-baileys",
+  "version": "1.5.8",
+  "description": "Typescript/Javascript WhatsApp Web API",
   "keywords": [
     "whatsapp",
-    "automation"
+    "js-whatsapp",
+    "whatsapp-api",
+    "whatsapp-web",
+    "whatsapp-chat",
+    "whatsapp-group",
+    "gifted-tech",
+    "gifted-baileys",
+    "automation",
+    "multi-device"
   ],
-  "homepage": "https://github.com/WhiskeySockets/Baileys/",
+  "homepage": "https://baileys.giftedtech.web.id",
   "repository": {
-    "url": "git@github.com:WhiskeySockets/Baileys.git"
+    "url": "https://baileys.giftedtech.web.id"
   },
   "license": "MIT",
-  "author": "Rajeh Taher",
+  "author": "GiftedTech",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
